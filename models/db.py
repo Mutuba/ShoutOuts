@@ -11,15 +11,15 @@ def connectDB():
 
 def create_db_tables():
     queries = [
-        'DROP TABLE IF EXISTS "user" CASCADE',
+        'DROP TABLE IF EXISTS "users" CASCADE',
         'DROP TABLE IF EXISTS "comment" CASCADE',
         """
         CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL, 
             username VARCHAR(140) NOT NULL, 
-            passwor VARCHAR(140) NOT NULL, 
+            password VARCHAR(140) NOT NULL, 
             role VARCHAR(140) NOT NULL, 
-            last_login VARCHAR(140) NOT NULL, 
+            last_login VARCHAR(140)
             );
         """,
         """
@@ -28,9 +28,9 @@ def create_db_tables():
             parent INT, 
             message TEXT NOT NULL, 
             author INT NOT NULL, 
-            created_at INT NOT NULL, 
-            updated_at INT NOT NULL, 
-            updated_by INT
+            created_at VARCHAR(140) NOT NULL, 
+            updated_at VARCHAR(140) NOT NULL, 
+            updated_by VARCHAR(140)
             );
         """
     ]
