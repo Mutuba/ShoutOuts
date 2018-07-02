@@ -3,7 +3,7 @@ from datetime import datetime
 import psycopg2
 import psycopg2.extras
 
-from db import connectDB
+from models.db import connectDB
 
 
 class Comment:

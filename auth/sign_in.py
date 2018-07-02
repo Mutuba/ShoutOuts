@@ -1,11 +1,9 @@
-from user import User
+from models.user import User
 from models.comment import Comment
 import sys
 import datetime
 
 def login():
-    users = User.get_users()
-    
     username = input("Enter your username: ")
     password = input("Enter your password: ")
 
@@ -21,7 +19,7 @@ def login():
         updated_at = str(datetime.now())
         updated_by = user
         author = user
-        else:
-            return "wrong password"
+    else:
+        return "wrong password"
     return "User not found"
 login()
