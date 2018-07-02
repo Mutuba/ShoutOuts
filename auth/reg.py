@@ -1,14 +1,15 @@
 from users import User
 import sys
+from db import *
 
 def reg():
-	user = User()
     username = input("Enter your username: ")
     password = input("Enter your password: ")
-    role = input(":Enter the role for the user")
+    role = input("Enter the role for the user: ")
 
-    user.create_user(username, password, role)
-
-    return "User details added"
-    
-reg()
+    if not username:
+        print('Username is required')
+    if not password:
+        print('Password is required')
+        
+    User.create_user(username, password, role)

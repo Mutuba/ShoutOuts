@@ -51,6 +51,5 @@ def run_query_commands(queries):
         if connection is not None:
             connection.close()
 
-
 if __name__ == '__main__':
     create_db_tables()
