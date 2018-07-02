@@ -2,7 +2,7 @@ from users import User
 import sys
 
 def reg():
-	user=User()
+	user = User()
     username = input("Enter your username: ")
     password = input("Enter your password: ")
     role = input("Enter your role")
