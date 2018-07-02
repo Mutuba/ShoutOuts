@@ -36,7 +36,7 @@ class Comment:
             return {'status': 'failed', 'data': error}
         results = self.cursor.fetchone()
         if results is None:
-            abort(404, message='The comment does not exist')
+            return {'status': 'success', 'message': 'The comment does not exist'}
         return results
 
     def edit(self, id, message, updated_by):
