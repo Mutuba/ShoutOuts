@@ -1,5 +1,5 @@
 import datetime
-form db import connect
+from db import *
 
 class User:
     def __init__(self, username, role, last_login, password):
@@ -7,8 +7,45 @@ class User:
         self.role = role
         self.last_login = last_login
         self.password = password
-    
-    def username(self):
-        return self.username
 
-    def create_comment(self, message, author, created_at, updated_at, updated_by=None, parent=None):
+    # Create a user
+    def create_user(self, username, password, role):
+        create_db_tables()
+        last_login = str(datetime.datetime.utcnow())
+        conn = connectDB()
+        cur = conn.cursor()
+        cur.execute('INSERT INTO users (username, password, role, last_login) VALUES (%s, %s, %s, %s, %s)', (username, password, role, last_login))
+        conn.commit
+        cur.close()
+        conn.close()
+
+    # Fetch a list of users
+    def get_users(self):
+        conn = connectDB()
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM users')
+        conn.commit()
+        users = cur.fetchall()
+        cur.close()
+        conn.close()
+        return users
+
+    # Fetch a user
+    def get_user(self, username):
+        conn = connectDB()
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM users WHERE username = %s', (username,))
+        conn.commit()
+        user = cur.fetchone()
+        cur.close()
+        conn.close()
+        return user
+
+    # Delete a user
+    def delete_user(self, username):
+        conn = connectDB()
+        cur = conn.cursor()
+        cur.execute('DELETE FROM users WHERE username = %s', (username,))
+        cur.close()
+        conn.close()
+        

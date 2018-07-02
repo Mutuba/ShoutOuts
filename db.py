@@ -1,0 +1,73 @@
+<<<<<<< HEAD
+import psycopg2
+
+def connect():
+    conn = None
+    try:
+        conn = psycopg2.connect("host='localhost' dbname='shoutout' user='shoutout' password=''")
+        print('Successfully connected to PostgreSQL!')
+        return conn
+    except psycopg2.DatabaseError as e:
+        if conn:
+            conn.rollback()
+        print('Cannot connect to PostgreSQL. Error {}'.format(e))
+        sys.exit(1)
+        
+=======
+import psycopg2
+import psycopg2.extras
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+def connectDB():
+    connection_string = 'dbname=shoutout user=shoutout password=shoutout host=localhost'
+    try:
+        return psycopg2.connect(connection_string)
+    except:
+        print('Can\'t connect to database')
+
+def create_db_tables():
+    queries = [
+        'DROP TABLE IF EXISTS "user" CASCADE',
+        'DROP TABLE IF EXISTS "comment" CASCADE',
+        """
+        CREATE TABLE users (
+            id SERIAL PRIMARY KEY NOT NULL, 
+            username VARCHAR(140) NOT NULL, 
+            password VARCHAR(140) NOT NULL, 
+            role VARCHAR(140) NOT NULL, 
+            last_login VARCHAR(140) NOT NULL, 
+            );
+        """,
+        """
+        CREATE TABLE comment (
+            id SERIAL PRIMARY KEY NOT NULL, 
+            parent INT, 
+            message TEXT NOT NULL, 
+            author INT NOT NULL, 
+            created_at INT NOT NULL, 
+            updated_at INT NOT NULL, 
+            updated_by INT
+            );
+        """
+    ]
+    run_query_commands(queries)
+
+def run_query_commands(queries):
+    connection = None
+    try:
+       connection = connectDB()
+       cursor = connection.cursor()
+       for query in queries:
+            cursor.execute(query)
+       cursor.close()
+       connection.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if connection is not None:
+            connection.close()
+
+
+if __name__ == '__main__':
+    create_db_tables()
+>>>>>>> fddcb29df9f821d2d89dfb7f9168e662fbf7667c
