@@ -4,8 +4,8 @@ import sys
 import datetime
 
 def login():
-	users = User.get_users()
-	
+    users = User.get_users()
+    
     username = input("Enter your username: ")
     password = input("Enter your password: ")
 
