@@ -1,4 +1,4 @@
-from users import User
+from ..models.user import User
 import sys
 from db import *
 
@@ -11,5 +11,5 @@ def reg():
         print('Username is required')
     if not password:
         print('Password is required')
-        
+
     User.create_user(username, password, role)
