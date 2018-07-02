@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import psycopg2
-
-def connect():
-    conn = None
-    try:
-        conn = psycopg2.connect("host='localhost' dbname='shoutout' user='shoutout' password=''")
-        print('Successfully connected to PostgreSQL!')
-        return conn
-    except psycopg2.DatabaseError as e:
-        if conn:
-            conn.rollback()
-        print('Cannot connect to PostgreSQL. Error {}'.format(e))
-        sys.exit(1)
-        
-=======
 import psycopg2
 import psycopg2.extras
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -70,4 +54,3 @@ def run_query_commands(queries):
 
 if __name__ == '__main__':
     create_db_tables()
->>>>>>> fddcb29df9f821d2d89dfb7f9168e662fbf7667c
