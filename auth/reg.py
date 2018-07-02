@@ -5,11 +5,9 @@ def reg():
 	user = User()
     username = input("Enter your username: ")
     password = input("Enter your password: ")
-    role = input("Enter your role")
+    role = input(":Enter the role for the user")
 
-    user.add['username'] = username
-    user.add['password'] = password
-    user.add['role'] = role
+    user.create_user(username, password, role)
 
     return "User details added"
     

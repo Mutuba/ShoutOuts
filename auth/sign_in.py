@@ -9,8 +9,10 @@ def login():
     username = input("Enter your username: ")
     password = input("Enter your password: ")
 
-    for user in users:
-        if user.username == username and user.password == password:
+    user = User.get_user(username)
+
+    if username:
+        if user.password == password:
             return "Welcome, you are logged in"
         comments = Comment()
         parent = input("Enter parent comment")
