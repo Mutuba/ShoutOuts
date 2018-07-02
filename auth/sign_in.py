@@ -4,13 +4,13 @@ import sys
 import datetime
 
 def login():
-	users = User()
-	 
+	users = User.get_users()
+	
     username = input("Enter your username: ")
     password = input("Enter your password: ")
 
     for user in users:
-        if user == username:
+        if user.username == username and user.password == password:
             return "Welcome, you are logged in"
         comments = Comment()
         parent = input("Enter parent comment")
@@ -21,5 +21,5 @@ def login():
         author = user
         else:
             return "wrong password"
-
+    return "User not found"
 login()
