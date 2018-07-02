@@ -2,12 +2,6 @@ import datetime
 from db import *
 
 class User:
-    def __init__(self, username, role, last_login, password):
-        self.username = username
-        self.role = role
-        self.last_login = last_login
-        self.password = password
-
     # Create a user
     def create_user(self, username, password, role):
         create_db_tables()
